@@ -45,3 +45,15 @@ def decimal(address):
     for segment in segments(address):
         decimal_address += str(int(segment, 2)) + '.'
     return decimal_address[:-1]
+
+
+def network_address(IP):
+    network_part = raw_binary(binary(IP['address']))[:int(IP['prefix'])]
+    host_part = '0' * int(wildcard(IP['prefix']))
+    return decimal(segmented(network_part + host_part))
+
+
+def broadcast_address(IP):
+    network_part = raw_binary(binary(IP['address']))[:int(IP['prefix'])]
+    host_part = '1' * int(wildcard(IP['prefix']))
+    return decimal(segmented(network_part + host_part))
