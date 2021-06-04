@@ -1,4 +1,5 @@
-# IP = {'address': 'x.x.x.x', 'prefix': 'x'}
+# example of the ip varibale:
+# ip = {'address': 'x.x.x.x', 'prefix': 'x'}
 
 
 def segmented(raw_addres):
@@ -47,13 +48,13 @@ def decimal(address):
     return decimal_address[:-1]
 
 
-def network_address(IP):
-    network_part = raw_binary(binary(IP['address']))[:int(IP['prefix'])]
-    host_part = '0' * int(wildcard(IP['prefix']))
+def network_address(ip):
+    network_part = raw_binary(binary(ip['address']))[:int(ip['prefix'])]
+    host_part = '0' * int(wildcard(ip['prefix']))
     return decimal(segmented(network_part + host_part))
 
 
-def broadcast_address(IP):
-    network_part = raw_binary(binary(IP['address']))[:int(IP['prefix'])]
-    host_part = '1' * int(wildcard(IP['prefix']))
+def broadcast_address(ip):
+    network_part = raw_binary(binary(ip['address']))[:int(ip['prefix'])]
+    host_part = '1' * int(wildcard(ip['prefix']))
     return decimal(segmented(network_part + host_part))
